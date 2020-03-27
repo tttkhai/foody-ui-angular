@@ -10,6 +10,7 @@ import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.compo
 import { SearchLocationComponent } from './search-location/search-location.component';
 import { ResultListComponent } from './result-list/result-list.component';
 import {HttpClient , HttpClientModule} from '@angular/common/http'
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import {HttpClient , HttpClientModule} from '@angular/common/http'
     AppRoutingModule,
     HttpClient,
     HttpClientModule,
-    
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

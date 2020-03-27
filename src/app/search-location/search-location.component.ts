@@ -1,4 +1,7 @@
+import { FoodyService } from '../service/foody.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-search-location',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchLocationComponent implements OnInit {
 
-  constructor() { }
+  currentLat: any
+  currentLong: any
+  constructor(private form: FormControl, private appService: FoodyService) { }
 
   ngOnInit() {
   }
+  findMe() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.currentLat  = position.coords.latitude;
+        this.currentLong = position.coords.longitude;
+        console.log("This is longitude and latitude: "+ this.currentLong + " , "+this.currentLat);      
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
 
+  
+
+  
 }

@@ -1,4 +1,4 @@
-import { KEYS } from './../Constants';
+// import { KEYS } from './../Constants';
 import { Injectable } from '@angular/core';
 import {HttpClient , HttpClientModule} from '@angular/common/http'
 import { map } from 'rxjs/operators'
@@ -6,9 +6,9 @@ import { map } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
-export class FastfoodguruService {
+export class FoodyService {
 
-  keys= KEYS
+  // keys= KEYS
   location_url=`http://api.ipstack.com/check?access_key=$(keys.ipStack_apiKey)`
   url='http://localhost:8081/'
 
