@@ -1,29 +1,45 @@
 // import { KEYS } from './../Constants';
 import { Injectable } from '@angular/core';
-import {HttpClient , HttpClientModule} from '@angular/common/http'
+import {HttpClient } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 
 @Injectable({
-  providedIn: 'root'
+providedIn: 'root'
 })
 export class FoodyService {
 
   // keys= KEYS
-  location_url=`http://api.ipstack.com/check?access_key=$(keys.ipStack_apiKey)`
-  url='http://localhost:8081/'
+  // location_url=`http://api.ipstack.com/check?access_key=$(keys.ipStack_apiKey)`
+  url='http://localhost:8081/api/'
 
   constructor(private http: HttpClient) { }
 
-  currentLocation(){
-    this.http.get(this.location_url)
+  // currentLocation(){
+  // this.http.get(this.location_url)
+  // }
+
+  getAllFoodTypes(){
+    return this.http.get(this.url+'getFoodTypes').pipe(
+      map(foodType =>{
+        return foodType
+      })
+    )
+  }
+
+  getAllRestaurantTypes(){
+    return this.http.get(this.url+'restaurantTypes').pipe(
+      map(restaurantType =>{
+        return restaurantType
+      })
+      )
   }
 
   addReviews(reviews: any){
-    this.http.post(this.url, reviews)
+    return this.http.post(this.url, reviews)
   }
 
   reviewsByRestaurant(restaurantId: any){
-    this.http.get(this.url+'/reviews/restaurant=?'+restaurantId).pipe(
+    return this.http.get(this.url+'/reviews/restaurant=?'+restaurantId).pipe(
       map((review: any)=>{
         return review
       })
@@ -57,8 +73,6 @@ export class FoodyService {
   updateReviews(id: any, review: any){
     this.http.put(this.url+'updateReview/'+id, review)
   }
-
-
 
 }
 

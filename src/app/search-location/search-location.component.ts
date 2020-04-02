@@ -1,6 +1,7 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FoodyService } from '../service/foody.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -12,10 +13,35 @@ export class SearchLocationComponent implements OnInit {
 
   currentLat: any
   currentLong: any
-  constructor(private form: FormControl, private appService: FoodyService) { }
+  myForm: FormGroup
+  miles : number[] = [3,5,10,20]
+  food_types: any
+  restaurant_types: any
+  constructor(private form: FormBuilder, private appService: FoodyService) { }
 
   ngOnInit() {
+    this.myForm = this.form.group({
+        restaurantType: [],
+        foodType: [],
+        miles: ''
+    })
+
+    this.getFoodTypes()
+    this.getRestaurantTypes()
   }
+
+  getFoodTypes(){
+    this.appService.getAllFoodTypes().subscribe(foodtype=>{
+      this.food_types=foodtype
+    })
+  }
+
+  getRestaurantTypes(){
+    this.appService.getAllRestaurantTypes().subscribe(cuisine=>{
+      this.restaurant_types=cuisine
+    })
+  }
+
   findMe() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
