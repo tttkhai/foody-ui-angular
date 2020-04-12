@@ -1,0 +1,31 @@
+/* #search-location{
+    
+} */
+
+form{   
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 40px;
+
+}
+
+
+.flex-center, button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button{
+   min-width: 100px; 
+   font-size: 0.8rem;
+}
+
+.mat-form-field{
+    min-width: 400px;
+    margin-bottom: 20px;
+    margin-top: -20px;
+}
+
+

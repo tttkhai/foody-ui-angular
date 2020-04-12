@@ -33,12 +33,15 @@ export class SearchLocationComponent implements OnInit {
   getFoodTypes(){
     this.appService.getAllFoodTypes().subscribe(foodtype=>{
       this.food_types=foodtype
+      console.log(this.food_types);
     })
   }
 
   getRestaurantTypes(){
     this.appService.getAllRestaurantTypes().subscribe(cuisine=>{
       this.restaurant_types=cuisine
+      console.log(this.restaurant_types);
+
     })
   }
 

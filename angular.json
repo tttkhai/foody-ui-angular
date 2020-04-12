@@ -25,6 +25,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -124,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "fastfoodguru"
+  "defaultProject": "fastfoodguru",
+  "cli": {
+    "analytics": "54f34654-fa85-4f24-8395-80f9f7f7277b"
+  }
 }
