@@ -12,7 +12,7 @@ import { ResultListComponent } from './result-list/result-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -40,7 +40,7 @@ import { FooterComponent } from './footer/footer.component'
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    FormsModule,
+    // FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     RouterModule,
