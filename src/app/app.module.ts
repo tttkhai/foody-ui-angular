@@ -22,6 +22,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component'
 
+const routes: Routes = [
+  {path: '', component: SearchLocationComponent},
+  {path: 'addRestaurant', component: AddRestaurantComponent},
+];
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +48,10 @@ import { AddRestaurantComponent } from './add-restaurant/add-restaurant.componen
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    // FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     RouterModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]

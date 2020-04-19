@@ -1,0 +1,15 @@
+.restaurant-form {
+    min-width: 500px;
+    max-width: 900px;
+    width: 100%;
+    padding: 20px 50px;
+
+  }
+
+  .form-full-width{
+      width: 100%;
+  }
+  
+  h4{
+    margin-bottom: 0;
+  }
