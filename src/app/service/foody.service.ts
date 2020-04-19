@@ -54,11 +54,15 @@ export class FoodyService {
     )
   }
 
+  createNewRestaurant(restaurant: any, userId: number){
+   return this.http.post(this.url+'/addRestaurant', restaurant)
+  }
+
   restaurantById(id: any){
     this.http.get(this.url+'/restaurant/'+id)
   }
 
-  restaurantByLocation(){
+  searchRestaurantByLocation(){
     this.http.get(this.url+'/results').pipe(
       map((restaurant:any)=>{
         return restaurant

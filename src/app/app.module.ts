@@ -19,7 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component'
+import { FooterComponent } from './footer/footer.component';
+import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FooterComponent } from './footer/footer.component'
     SearchLocationComponent,
     ResultListComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AddRestaurantComponent
   ],
   imports: [
     BrowserModule,
