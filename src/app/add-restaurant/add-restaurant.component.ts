@@ -47,27 +47,16 @@ export class AddRestaurantComponent implements OnInit {
     console.log("restaurant.  important:  "+ JSON.stringify(restaurant_value));
     this.restaurant=restaurant_value;
     // this.restaurant.restaurant_types.id=restaurant_value.id
-    this.restaurant.restaurant_type=this.restaurant_types.filter(type=>{
-      return restaurant_value.restaurantType===type.id 
-    })
+    this.restaurant.restaurant_type=restaurant_value.restaurantType
     console.log("Restaurant Type Object: "+JSON.stringify(this.restaurant.restaurant_type));
-    restaurant_value.foodTypes.forEach(foodType=>{
-      this.restaurant.food_types=this.food_types.filter(type=>{
-        // console.log("Food Type id: "+type.id+ "foodType : "+ foodType);
-        // if(type.id===foodType){
-        //   console.log('yes '+ type.food_type);
-        //   console.log('Food Type: '+ JSON.stringify(type));
-        // }
-        return type.id===foodType
-      })
-    })
+    this.restaurant.food_types=restaurant_value.foodTypes
+   
     console.log("Foodtype Object: " + JSON.stringify(this.restaurant.food_types));
     
-    // this.appService.createNewRestaurant(this.user_id, restaurant).subscribe(restaurants=>{
-    //   this.restaurant = restaurant
-    //   console.log("Restaurant after created: "+restaurants);
+    this.appService.createNewRestaurant(1, this.restaurant).subscribe(restaurants=>{
+      console.log("Restaurant after created: "+restaurants);
       
-    // })
+    })
   }
 
   allRestaurantTypes(){

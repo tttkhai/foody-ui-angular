@@ -39,7 +39,7 @@ export class FoodyService {
   }
 
   reviewsByRestaurant(restaurantId: any){
-    return this.http.get(this.url+'/reviews/restaurant=?'+restaurantId).pipe(
+    return this.http.get(this.url+'reviews/restaurant=?'+restaurantId).pipe(
       map((review: any)=>{
         return review
       })
@@ -54,16 +54,16 @@ export class FoodyService {
     )
   }
 
-  createNewRestaurant(restaurant: any, userId: number){
-   return this.http.post(this.url+'/addRestaurant', restaurant)
+  createNewRestaurant(userId: number,restaurant: any){
+   return this.http.post(this.url+'addRestaurant', restaurant)
   }
 
   restaurantById(id: any){
-    this.http.get(this.url+'/restaurant/'+id)
+    this.http.get(this.url+'restaurant/'+id)
   }
 
   searchRestaurantByLocation(){
-    this.http.get(this.url+'/results').pipe(
+    this.http.get(this.url+'results').pipe(
       map((restaurant:any)=>{
         return restaurant
       })
