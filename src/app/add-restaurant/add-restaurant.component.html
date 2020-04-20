@@ -4,39 +4,39 @@
             <h4>What's restaurant name?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label>Restaurant's name</mat-label>
-                <input matInput placeholder="Name" FormControlName="name">
+                <input matInput placeholder="Name" formControlName="name">
                 <!-- <input matInput placeholder="Name" [value]="name" FormControlName="name"> -->
             </mat-form-field>
             <h4>What is your email?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" FormControlName="email">
+                <input matInput placeholder="Email" formControlName="email">
             </mat-form-field>
             <h4>What is the restaurant's address?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label>Address</mat-label>
-                <input matInput placeholder="Address" FormControlName="address">
+                <input matInput placeholder="Address" formControlName="address">
             </mat-form-field>
             <h4>What is the phone number?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" FormControlName="phoneNumber">
+                <input matInput placeholder="Phone Number" formControlName="phoneNumber">
             </mat-form-field>
             <h4>What kind of restaurant type?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label> Restaurant Type </mat-label>
-                <mat-select formControlName="restaurantType" multiple>
+                <mat-select formControlName="restaurantType">
                     <mat-option *ngFor="let restaurant_type of restaurant_types" [value]="restaurant_type.id">{{restaurant_type.type_name}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <h4>What kind of food type?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label> Food Type</mat-label>
-                <mat-select formControlName="foodType" multiple>
+                <mat-select formControlName="foodTypes" multiple>
                     <mat-option *ngFor="let food_type of food_types" [value]="food_type.id">{{food_type.food_type}}</mat-option>
                 </mat-select>
             </mat-form-field>
-            <button type="button" class="btn btn-info" (ngSubmit)=(onSubmit(restaurantForm.value))>Submit</button>
+            <button type="submit" class="btn btn-info" (click)=addRestaurant(restaurantForm.value)>Submit</button>
         </form>
     </div>
 </div>
