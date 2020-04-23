@@ -1,6 +1,6 @@
 // import { KEYS } from './../Constants';
 import { Injectable } from '@angular/core';
-import {HttpClient } from '@angular/common/http'
+import {HttpClient, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 
 @Injectable({
@@ -54,8 +54,12 @@ export class FoodyService {
     )
   }
 
-  createNewRestaurant(userId: number,restaurant: any){
-   return this.http.post(this.url+'addRestaurant', restaurant)
+  createNewRestaurant(restaurant: any){
+  // createNewRestaurant(restaurant: any, restaurantType: any, foodTypes: any){
+    let bodyString = JSON.stringify({ restaurant});
+    let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
+    return this.http.post(this.url+'addRestaurant', bodyString, { headers });
+  //  return this.http.post(this.url+'addRestaurant', )
   }
 
   restaurantById(id: any){

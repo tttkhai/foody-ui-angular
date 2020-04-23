@@ -10,17 +10,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AddRestaurantComponent implements OnInit {
   user_id: any
   restaurantForm: FormGroup
-  food_types: any
+  all_food_types: any
   restaurant_types: any
   restaurant: Restaurant={
     name: '',
     email: '',
     address: '',
     phone_number: '',
-    restaurant_type: {
-      id: null,
-      type_name: ''
-    },
+    restaurant_types_id: null,
+    // restaurant_type: {
+    //   id: null,
+    //   type_name: ''
+    // },
     food_types: [{
       id: null,
       food_type: ''
@@ -35,8 +36,8 @@ export class AddRestaurantComponent implements OnInit {
       email: '',
       address: '',
       phoneNumber: '',
-      foodTypes: null,
-      restaurantType: null
+      restaurant_types_id: null,
+      food_types: null
     })
     this.allRestaurantTypes()
     this.allFoodTypes()
@@ -45,18 +46,11 @@ export class AddRestaurantComponent implements OnInit {
   addRestaurant(restaurant_value: any){
     // this.food_types=restaurant.id.value();
     console.log("restaurant.  important:  "+ JSON.stringify(restaurant_value));
-    this.restaurant=restaurant_value;
-    // this.restaurant.restaurant_types.id=restaurant_value.id
-    this.restaurant.restaurant_type=restaurant_value.restaurantType
-    console.log("Restaurant Type Object: "+JSON.stringify(this.restaurant.restaurant_type));
-    this.restaurant.food_types=restaurant_value.foodTypes
-   
-    console.log("Foodtype Object: " + JSON.stringify(this.restaurant.food_types));
+    this.restaurant=restaurant_value;    
+    console.log("Restaurant: "+JSON.stringify(this.restaurant));
     
-    this.appService.createNewRestaurant(1, this.restaurant).subscribe(restaurants=>{
-      console.log("Restaurant after created: "+restaurants);
-      
-    })
+    // this.appService.createNewRestaurant(this.restaurant, this.restaurant_type, this.food_types).subscribe(restaurants=>{
+    this.appService.createNewRestaurant(this.restaurant).subscribe()
   }
 
   allRestaurantTypes(){
@@ -69,8 +63,7 @@ export class AddRestaurantComponent implements OnInit {
 
   allFoodTypes(){
     this.appService.getAllFoodTypes().subscribe(foodTypes=> {
-      this.food_types=foodTypes
-      console.log(this.food_types);
+      this.all_food_types=foodTypes
 
     })
   }
@@ -82,10 +75,11 @@ export interface Restaurant{
   email: String,
   name: String,
   phone_number: String,
-  restaurant_type: {
-    id: Number,
-    type_name: String
-  },
+  restaurant_types_id: Number,
+  // restaurant_type: {
+  //   id: Number,
+  //   type_name: String
+  // },
   food_types: [{
     id: Number,
     food_type: String

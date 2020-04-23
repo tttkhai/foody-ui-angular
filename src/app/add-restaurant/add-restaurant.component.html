@@ -25,15 +25,15 @@
             <h4>What kind of restaurant type?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label> Restaurant Type </mat-label>
-                <mat-select formControlName="restaurantType">
-                    <mat-option *ngFor="let restaurant_type of restaurant_types" [value]="restaurant_type">{{restaurant_type.type_name}}</mat-option>
+                <mat-select formControlName="restaurant_types_id">
+                    <mat-option *ngFor="let restaurant_type of restaurant_types" [value]="restaurant_type.id">{{restaurant_type.type_name}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <h4>What kind of food type?</h4>
             <mat-form-field class="form-full-width">
                 <mat-label> Food Type</mat-label>
-                <mat-select formControlName="foodTypes" multiple>
-                    <mat-option *ngFor="let food_type of food_types" [value]="food_type">{{food_type.food_type}}</mat-option>
+                <mat-select formControlName="food_types" multiple>
+                    <mat-option *ngFor="let food_type of all_food_types" [value]="food_type.id">{{food_type.food_type}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <button type="submit" class="btn btn-info" (click)=addRestaurant(restaurantForm.value)>Submit</button>
