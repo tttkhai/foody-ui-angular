@@ -1,1 +1,14 @@
-<p>result-list works!</p>
+<div *ngIf="restaurantList">
+    <div>
+        {{restaurantList.name}}
+    </div>
+    <div>
+        {{restaurantList.address}}
+    </div>
+    <div>
+        {{restaurantList.phone_number}}
+    </div>
+    <div>
+        {{distance}}
+    </div>  
+</div>

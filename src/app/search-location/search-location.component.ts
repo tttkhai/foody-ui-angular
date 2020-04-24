@@ -17,6 +17,7 @@ export class SearchLocationComponent implements OnInit {
   miles : number[] = [3,5,10,20]
   food_types: any
   restaurant_types: any
+  restaurantList: any
   constructor(private form: FormBuilder, private appService: FoodyService) { }
 
   ngOnInit() {
@@ -45,12 +46,31 @@ export class SearchLocationComponent implements OnInit {
     })
   }
 
+  getRestaurantListByPreferences(myForm){
+    let lat=this.findMe()[0]
+    let lng=this.findMe()[1]
+    console.log("lat + lng: "+ lat+", "+lng);
+    
+    let food_types=myForm.foodType
+    let res_types=myForm.restaurantType
+    let distance=myForm.miles
+    let preferences= JSON.stringify({lat, lng, food_types, res_types, distance })
+    console.log("important: "+ preferences);
+    
+    this.appService.getRestaurantListByPreferences(preferences).subscribe(restaurantList=>{
+      this.restaurantList=restaurantList
+    });
+  }
+
+  
+
   findMe() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.currentLat  = position.coords.latitude;
         this.currentLong = position.coords.longitude;
-        console.log("This is longitude and latitude: "+ this.currentLong + " , "+this.currentLat);      
+        console.log("This is longitude and latitude: "+ this.currentLong + " , "+this.currentLat);    
+        return [this.currentLat, this.currentLong]
       });
     } else {
       alert("Geolocation is not supported by this browser.");

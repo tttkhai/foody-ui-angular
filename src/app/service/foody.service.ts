@@ -34,6 +34,11 @@ export class FoodyService {
       )
   }
 
+  getRestaurantListByPreferences(preference: any){
+    return this.http.get(this.url+'restaurantList', preference)
+  }
+
+
   addReviews(reviews: any){
     return this.http.post(this.url, reviews)
   }
@@ -73,6 +78,7 @@ export class FoodyService {
       })
     )
   }
+
 
   deleteReviews(id: any){
     this.http.delete(this.url+'deleteReview/'+id)

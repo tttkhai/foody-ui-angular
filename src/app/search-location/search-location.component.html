@@ -6,14 +6,14 @@
         <mat-form-field>
             <mat-label> kind of cuisine </mat-label>
             <mat-select formControlName="restaurantType" multiple>
-              <mat-option *ngFor="let restaurant_type of restaurant_types" [value]="restaurantType">{{restaurant_type.type_name}}</mat-option>
+              <mat-option *ngFor="let restaurant_type of restaurant_types" [value]="restaurant_type.id">{{restaurant_type.type_name}}</mat-option>
             </mat-select>
         </mat-form-field>
         <h4>What type of food do you like?</h4>
         <mat-form-field>
           <mat-label> type of food </mat-label>
           <mat-select formControlName="foodType" multiple>
-            <mat-option *ngFor="let food_type of food_types" [value]="foodType">{{food_type.food_type}}</mat-option>
+            <mat-option *ngFor="let food_type of food_types" [value]="food_type.id">{{food_type.food_type}}</mat-option>
           </mat-select>
         </mat-form-field>
         <h4>How far?</h4>
@@ -25,6 +25,9 @@
         </mat-form-field>
         <button type="button" class="btn btn-info" (click)="findMe()">Search</button>
       </form>
+    </div>
+    <div class="row">
+      <app-result-list [restaurantList]="restaurantList"></app-result-list>
     </div>
   </div>
 </div>
