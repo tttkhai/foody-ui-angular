@@ -54,12 +54,9 @@ export class SearchLocationComponent implements OnInit {
     })
   }
 
-  getRestaurantListByPreferences(myForm) {
-    console.log("Hello");
-    
+  getRestaurantListByPreferences(myForm) {    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log("Hello 2");
         this.preferences.lat=position.coords.latitude;
         this.preferences.lng=position.coords.longitude;
         this.preferences.food_types=myForm.foodType
@@ -67,10 +64,8 @@ export class SearchLocationComponent implements OnInit {
         this.preferences.distance=myForm.miles
         console.log("IMPORTANT: "+JSON.stringify(this.preferences));
         this.appService.getRestaurantListByPreferences(this.preferences).subscribe(list=>{
-          console.log("Hello 3");
           this.restaurantList=list
-          console.log("RETURN restaurant list: "+JSON.stringify(this.restaurantList));
-          
+          console.log("RETURN restaurant list: "+JSON.stringify(this.restaurantList))         
         })
       });
     } else {

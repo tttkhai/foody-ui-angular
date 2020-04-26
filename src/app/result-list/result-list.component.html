@@ -1,5 +1,4 @@
-<div *ngIf="restaurantList.length">
-    
+<div *ngIf="restaurantList.length, else notShow">  
     <table>
         <!-- <tr *ngFor="let column of columns">
             <th>
@@ -11,23 +10,8 @@
             <td>{{restaurant.address}}</td>
             <td>{{restaurant.phoneNumber}}</td>
           </tr>    
-      </table>
-    <!-- <div *ngFor="let restaurant of restaurantList">
-        <div>
-          {{restaurant.name}}
-      </div>
-      <div>
-          {{restaurant.address}}
-      </div>
-      <div>
-          {{restaurant.phone_number}}
-      </div> -->
-      <!-- <div>
-          {{distance}}
-      </div>   -->
-    <!-- </div>  -->
+    </table>
 </div>
-<div *ngIf="restaurantList.length===0">
-
-<div>No results</div>
-</div>
+<ng-template #notShow>
+    <div>No results</div>
+</ng-template>
