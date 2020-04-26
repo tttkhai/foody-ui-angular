@@ -9,10 +9,12 @@ import { SearchLocationComponent } from '../search-location/search-location.comp
 export class ResultListComponent implements OnInit {
 
   @Input() restaurantList:  SearchLocationComponent;
-  
+  columns=['Name', 'Address', 'Phone Number']
   constructor() { }
 
   ngOnInit() {
+    console.log("App result list Component: " + this.restaurantList);
+    
   }
 
 }

@@ -12,6 +12,8 @@ import { ResultListComponent } from './result-list/result-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
+// import { AgmCoreModule } from '@agm/core';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -21,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component'
+import { KEYS } from './keys/keys'
 
 const routes: Routes = [
   {path: '', component: SearchLocationComponent},
@@ -52,6 +55,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule,
     RouterModule.forRoot(routes),
+    // AgmCoreModule.forRoot({
+    //   apiKey: KEYS.google_api_key
+    // })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FoodyService } from '../service/foody.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+// import {AgmMap, MouseEvent,MapsAPILoader  } from '@agm/core';  
 
 
 @Component({
@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SearchLocationComponent implements OnInit {
 
+  food: Number[]
   currentLat: any
   currentLong: any
   myForm: FormGroup
@@ -18,6 +19,13 @@ export class SearchLocationComponent implements OnInit {
   food_types: any
   restaurant_types: any
   restaurantList: any
+  preferences: Preferences={
+    lat: null,
+    lng: null, 
+    cuisine: [],
+    food_types: [],
+    distance: null
+  }
   constructor(private form: FormBuilder, private appService: FoodyService) { }
 
   ngOnInit() {
@@ -46,38 +54,37 @@ export class SearchLocationComponent implements OnInit {
     })
   }
 
-  getRestaurantListByPreferences(myForm){
-    let lat=this.findMe()[0]
-    let lng=this.findMe()[1]
-    console.log("lat + lng: "+ lat+", "+lng);
+  getRestaurantListByPreferences(myForm) {
+    console.log("Hello");
     
-    let food_types=myForm.foodType
-    let res_types=myForm.restaurantType
-    let distance=myForm.miles
-    let preferences= JSON.stringify({lat, lng, food_types, res_types, distance })
-    console.log("important: "+ preferences);
-    
-    this.appService.getRestaurantListByPreferences(preferences).subscribe(restaurantList=>{
-      this.restaurantList=restaurantList
-    });
-  }
-
-  
-
-  findMe() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.currentLat  = position.coords.latitude;
-        this.currentLong = position.coords.longitude;
-        console.log("This is longitude and latitude: "+ this.currentLong + " , "+this.currentLat);    
-        return [this.currentLat, this.currentLong]
+        console.log("Hello 2");
+        this.preferences.lat=position.coords.latitude;
+        this.preferences.lng=position.coords.longitude;
+        this.preferences.food_types=myForm.foodType
+        this.preferences.cuisine=myForm.restaurantType
+        this.preferences.distance=myForm.miles
+        console.log("IMPORTANT: "+JSON.stringify(this.preferences));
+        this.appService.getRestaurantListByPreferences(this.preferences).subscribe(list=>{
+          console.log("Hello 3");
+          this.restaurantList=list
+          console.log("RETURN restaurant list: "+JSON.stringify(this.restaurantList));
+          
+        })
       });
     } else {
       alert("Geolocation is not supported by this browser.");
     }
-  }
-
-  
-
-  
+  }  
 }
+
+export interface Preferences{
+  lat: Number,
+  lng: Number, 
+  cuisine: Number[],
+  food_types: Number[],
+  distance: Number
+}
+
+

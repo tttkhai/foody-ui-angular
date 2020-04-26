@@ -35,7 +35,7 @@ export class FoodyService {
   }
 
   getRestaurantListByPreferences(preference: any){
-    return this.http.get(this.url+'restaurantList', preference)
+    return this.http.post(this.url+'restaurantList', preference)
   }
 
 

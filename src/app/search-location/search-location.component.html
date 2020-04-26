@@ -1,7 +1,7 @@
 <div class="flex-center">
   <div class= "container" id="search-location">
     <div class="row">
-      <form [formGroup]="myForm" (ngSubmit)=(onSubmit(myForm.value)) >
+      <form [formGroup]="myForm" (ngSubmit)="getRestaurantListByPreferences(myForm.value)" >
         <h4>What kind of cuisine do you want?</h4>
         <mat-form-field>
             <mat-label> kind of cuisine </mat-label>
@@ -23,8 +23,8 @@
             <mat-option *ngFor="let mile of miles" [value]="mile"> < {{mile}} miles</mat-option>
           </mat-select>
         </mat-form-field>
-        <button type="button" class="btn btn-info" (click)="findMe()">Search</button>
-      </form>
+        <button type="submit" class="btn btn-info">Search</button>
+      </form>  
     </div>
     <div class="row">
       <app-result-list [restaurantList]="restaurantList"></app-result-list>
