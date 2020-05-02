@@ -8,15 +8,9 @@ providedIn: 'root'
 })
 export class FoodyService {
 
-  // keys= KEYS
-  // location_url=`http://api.ipstack.com/check?access_key=$(keys.ipStack_apiKey)`
   url='http://localhost:8081/api/'
 
   constructor(private http: HttpClient) { }
-
-  // currentLocation(){
-  // this.http.get(this.location_url)
-  // }
 
   getAllFoodTypes(){
     return this.http.get(this.url+'getFoodTypes').pipe(
@@ -37,7 +31,6 @@ export class FoodyService {
   getRestaurantListByPreferences(preference: any){
     return this.http.post(this.url+'restaurantList', preference)
   }
-
 
   addReviews(reviews: any){
     return this.http.post(this.url, reviews)
@@ -60,11 +53,9 @@ export class FoodyService {
   }
 
   createNewRestaurant(restaurant: any){
-  // createNewRestaurant(restaurant: any, restaurantType: any, foodTypes: any){
     let bodyString = JSON.stringify({ restaurant});
     let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
     return this.http.post(this.url+'addRestaurant', bodyString, { headers });
-  //  return this.http.post(this.url+'addRestaurant', )
   }
 
   restaurantById(id: any){
@@ -79,7 +70,6 @@ export class FoodyService {
     )
   }
 
-
   deleteReviews(id: any){
     this.http.delete(this.url+'deleteReview/'+id)
   }
@@ -87,6 +77,5 @@ export class FoodyService {
   updateReviews(id: any, review: any){
     this.http.put(this.url+'updateReview/'+id, review)
   }
-
 }
 

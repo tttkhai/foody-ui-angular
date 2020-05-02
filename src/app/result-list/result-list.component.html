@@ -1,17 +1,22 @@
-<div *ngIf="restaurantList.length, else notShow">  
-    <table>
-        <!-- <tr *ngFor="let column of columns">
-            <th>
-          {{column}}
-            </th>
-        </tr>   -->
-        <tr *ngFor="let restaurant of restaurantList">
-            <td>{{restaurant.name}}</td>
-            <td>{{restaurant.address}}</td>
-            <td>{{restaurant.phoneNumber}}</td>
-          </tr>    
-    </table>
+<div  *ngIf="restaurantList">
+    <div *ngIf="restaurantList.length, else notShow">  
+        <table>
+            <!-- <tr *ngFor="let column of columns">
+                <th>
+              {{column}}
+                </th>
+            </tr>   -->
+            <tr *ngFor="let restaurant of restaurantList">
+                <td>{{restaurant.name}}</td>
+                <td>{{restaurant.address}}</td>
+                <td>{{restaurant.phoneNumber}}</td>
+                <td>{{restaurant.distance}}</td>
+    
+              </tr>    
+        </table>
+    </div>
+    <ng-template #notShow>
+        <div>No results</div>
+    </ng-template>
+    
 </div>
-<ng-template #notShow>
-    <div>No results</div>
-</ng-template>
