@@ -23,11 +23,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component'
-import { KEYS } from './keys/keys'
+import { KEYS } from './keys/keys';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AddNewUserComponent } from './add-new-user/add-new-user.component'
 
 const routes: Routes = [
   {path: '', component: SearchLocationComponent},
   {path: 'addRestaurant', component: AddRestaurantComponent},
+  {path: 'login', component: LoginPageComponent},
+  {path: 'register', component: AddNewUserComponent},
+
+  
+  
 ];
 
 
@@ -42,7 +49,9 @@ const routes: Routes = [
     ResultListComponent,
     HeaderComponent,
     FooterComponent,
-    AddRestaurantComponent
+    AddRestaurantComponent,
+    LoginPageComponent,
+    AddNewUserComponent
   ],
   imports: [
     BrowserModule,

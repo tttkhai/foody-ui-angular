@@ -63,7 +63,7 @@ export class SearchLocationComponent implements OnInit {
         this.preferences.cuisine=myForm.restaurantType
         this.preferences.distance=myForm.miles
         console.log("IMPORTANT: "+JSON.stringify(this.preferences));
-        this.appService.getRestaurantListByPreferences(this.preferences).subscribe(list=>{
+        this.appService.getRestaurantListByPreferences(this.preferences).subscribe((list: any)=>{
           this.restaurantList=list
           console.log("RETURN restaurant list: "+JSON.stringify(this.restaurantList))         
         })

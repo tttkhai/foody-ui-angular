@@ -1,7 +1,7 @@
 // import { KEYS } from './../Constants';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http'
-import { map } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 
 @Injectable({
 providedIn: 'root'
@@ -17,6 +17,26 @@ export class FoodyService {
       map(foodType =>{
         return foodType
       })
+    )
+  }
+
+  getAllRoles(){
+    return this.http.get(this.url+'roles')
+  }
+
+  authenticate(user: any){
+    return this.http.post(this.url+'authenticate', user).pipe(
+      // catchError(err=>{
+        
+      // })
+    )
+  }
+  
+  addNewUser(user: any){
+    return this.http.post(this.url+'addUser', user).pipe(
+      // catchError(err=>{
+        
+      // })
     )
   }
 
