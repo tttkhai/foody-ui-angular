@@ -25,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component'
 import { KEYS } from './keys/keys';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { AddNewUserComponent } from './add-new-user/add-new-user.component'
+import { AddNewUserComponent } from './add-new-user/add-new-user.component';
+import { RegisterComponent } from './register/register.component'
 
 const routes: Routes = [
   {path: '', component: SearchLocationComponent},
@@ -51,7 +52,8 @@ const routes: Routes = [
     FooterComponent,
     AddRestaurantComponent,
     LoginPageComponent,
-    AddNewUserComponent
+    AddNewUserComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

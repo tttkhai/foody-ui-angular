@@ -3,11 +3,11 @@ import { FoodyService } from '../service/foody.service'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-new-user',
-  templateUrl: './add-new-user.component.html',
-  styleUrls: ['./add-new-user.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class AddNewUserComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   newUserForm: FormGroup
   roles: any
   constructor(private appService: FoodyService, private form: FormBuilder ) { }
@@ -52,11 +52,11 @@ export class AddNewUserComponent implements OnInit {
 
 export interface User{
   "username": String,
-	"password": String,
-	"firstName": String,
-	"lastName": String,
-	"email": String,
-	"address": String,
-	"phoneNumber": String,
-	"role": Number
+  "password": String,
+  "firstName": String,
+  "lastName": String,
+  "email": String,
+  "address": String,
+  "phoneNumber": String,
+  "role": Number
 }
