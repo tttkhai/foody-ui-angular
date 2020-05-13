@@ -1,11 +1,18 @@
-<div class= "container" id="search-location">
-    <div class="row">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" >
-        <h4>username</h4>
-        <input matInput placeholder="Username" formControlName="username">
-        <h4>Password</h4>
-        <input matInput placeholder="Password" formControlName="password">
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+<div class="flex-center">
+  <div class="row">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" >
+      <h4>Username</h4>
+      <mat-form-field>
+        <mat-label> Username </mat-label>
+            <input matInput placeholder="Username" formControlName="username" />
+      </mat-form-field>
+      <h4>Password</h4>
+      <mat-form-field>
+        <mat-label> Password </mat-label>
+            <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>    
+      <br/>
+      <button type="submit" class="btn btn-info"> Register</button>
+    </form>  
+  </div>
 </div>

@@ -10,6 +10,20 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class RegisterComponent implements OnInit {
   newUserForm: FormGroup
   roles: any
+  newUser: User={
+    "username": "",
+    "password": "",
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "address": "",
+    "phoneNumber": "",
+    "role": {
+      "id": null,
+      "name": ""
+    }
+  }
+
   constructor(private appService: FoodyService, private form: FormBuilder ) { }
 
   ngOnInit(): void {
@@ -36,14 +50,20 @@ export class RegisterComponent implements OnInit {
       "phoneNumber": new FormControl('',[
         Validators.required,
       ]),
-      "role": "",
+      "role": {
+        "id": null,
+        "name": ''
+      },
     })
     this.appService.getAllRoles().subscribe(roles=>this.roles=roles)
 
   }
 
   addNewUser(value: any){
-    this.appService.addNewUser(value).subscribe()
+    this.newUser= value
+    console.log("this is new user "+ JSON.stringify(this.newUser));
+    
+    this.appService.addNewUser(this.newUser).subscribe()
   }
 
   
@@ -58,5 +78,8 @@ export interface User{
   "email": String,
   "address": String,
   "phoneNumber": String,
-  "role": Number
+  "role": {
+    "id": Number,
+    "name": String
+  }
 }

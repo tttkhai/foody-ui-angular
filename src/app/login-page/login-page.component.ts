@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms'
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  token: any
   user: User={
     'username': '',
     'password':''
@@ -30,7 +31,7 @@ export class LoginPageComponent implements OnInit {
     
     this.appService.authenticate(this.user).subscribe((token)=>{
       console.log("this is token: "+ token);
-      
+      this.token=token
     } )
   }
 

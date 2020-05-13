@@ -9,7 +9,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.component';
 import { SearchLocationComponent } from './search-location/search-location.component';
 import { ResultListComponent } from './result-list/result-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 // import { AgmCoreModule } from '@agm/core';
@@ -25,14 +25,14 @@ import { FooterComponent } from './footer/footer.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component'
 import { KEYS } from './keys/keys';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { AddNewUserComponent } from './add-new-user/add-new-user.component';
 import { RegisterComponent } from './register/register.component'
+import { TokenInterceptor } from './http-interceptors/token.interceptor';
 
 const routes: Routes = [
   {path: '', component: SearchLocationComponent},
   {path: 'addRestaurant', component: AddRestaurantComponent},
   {path: 'login', component: LoginPageComponent},
-  {path: 'register', component: AddNewUserComponent},
+  {path: 'register', component: RegisterComponent},
 
   
   
@@ -52,7 +52,6 @@ const routes: Routes = [
     FooterComponent,
     AddRestaurantComponent,
     LoginPageComponent,
-    AddNewUserComponent,
     RegisterComponent
   ],
   imports: [
@@ -70,7 +69,11 @@ const routes: Routes = [
     //   apiKey: KEYS.google_api_key
     // })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

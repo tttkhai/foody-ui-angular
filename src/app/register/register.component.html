@@ -31,7 +31,7 @@
           <mat-label>Address</mat-label>
           <input matInput placeholder="Address" formControlName="address">
         </mat-form-field>
-        <h4>Phone Numbe</h4>
+        <h4>Phone Number</h4>
         <mat-form-field>
           <mat-label>Phone Number</mat-label>
           <input matInput placeholder="Phone Number" formControlName="phoneNumber">
@@ -40,7 +40,7 @@
         <mat-form-field>
           <mat-label>Role</mat-label>
           <mat-select formControlName="role">
-            <mat-option *ngFor="let role of roles" [value]="role.id"> {{role.name}} </mat-option>
+            <mat-option *ngFor="let role of roles" [value]="role"> {{role.name}} </mat-option>
           </mat-select>
         </mat-form-field>
         <br/>
