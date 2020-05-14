@@ -10,7 +10,8 @@
       <mat-form-field>
         <mat-label> Password </mat-label>
             <input matInput placeholder="Password" type="password" formControlName="password">
-      </mat-form-field>    
+      </mat-form-field>   
+      <div *ngIf="messageError"> {{messageError}} </div> 
       <br/>
       <button type="submit" class="btn btn-info"> Register</button>
     </form>  

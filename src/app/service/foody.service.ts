@@ -1,7 +1,7 @@
 // import { KEYS } from './../Constants';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders } from '@angular/common/http'
-import { map, catchError } from 'rxjs/operators'
+import {HttpClient, HttpHeaders, HttpEvent, HttpErrorResponse, HttpResponse } from '@angular/common/http'
+import { map, tap, catchError } from 'rxjs/operators'
 
 @Injectable({
 providedIn: 'root'
@@ -10,7 +10,17 @@ export class FoodyService {
 
   url='http://localhost:8081/api/'
 
+  token: any
+  user: any
   constructor(private http: HttpClient) { }
+
+  isLogin(){
+    return typeof this.user !== 'undefined' && this.user
+  }
+
+  login(user: any){
+    return this.http.post(this.url+'login', user)
+  }
 
   getAllFoodTypes(){
     return this.http.get(this.url+'getFoodTypes').pipe(
@@ -23,21 +33,9 @@ export class FoodyService {
   getAllRoles(){
     return this.http.get(this.url+'roles')
   }
-
-  authenticate(user: any){
-    return this.http.post(this.url+'authenticate', user).pipe(
-      // catchError(err=>{
-        
-      // })
-    )
-  }
   
   addNewUser(user: any){
-    return this.http.post(this.url+'addUser', user).pipe(
-      // catchError(err=>{
-        
-      // })
-    )
+    return this.http.post(this.url+'addUser', user)
   }
 
   getAllRestaurantTypes(){

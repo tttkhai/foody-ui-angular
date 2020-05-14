@@ -11,9 +11,6 @@ import { SearchLocationComponent } from './search-location/search-location.compo
 import { ResultListComponent } from './result-list/result-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
-// import { AgmCoreModule } from '@agm/core';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';

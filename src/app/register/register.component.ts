@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodyService } from '../service/foody.service'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  constructor(private appService: FoodyService, private form: FormBuilder ) { }
+  constructor(private appService: FoodyService, private form: FormBuilder, private router: Router ) { }
 
   ngOnInit(): void {
     this.newUserForm=this.form.group({
@@ -63,7 +64,9 @@ export class RegisterComponent implements OnInit {
     this.newUser= value
     console.log("this is new user "+ JSON.stringify(this.newUser));
     
-    this.appService.addNewUser(this.newUser).subscribe()
+    this.appService.addNewUser(this.newUser).subscribe(user=>{
+      this.router.navigate['/login']
+    })
   }
 
   
