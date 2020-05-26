@@ -1,3 +1,5 @@
+<h1 *ngIf="loading; else notShow">Loading</h1>
+<ng-template #notShow>
 <div class="flex-center">
   <div class="row">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" >
@@ -11,9 +13,10 @@
         <mat-label> Password </mat-label>
             <input matInput placeholder="Password" type="password" formControlName="password">
       </mat-form-field>   
-      <div *ngIf="messageError"> {{messageError}} </div> 
+      <div *ngIf="messageError" style="color: red"> {{messageError}} </div> 
       <br/>
-      <button type="submit" class="btn btn-info"> Register</button>
+      <button type="submit" class="btn btn-info"> Login</button>
     </form>  
   </div>
 </div>
+</ng-template>

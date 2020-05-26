@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'addRestaurant', component: AddRestaurantComponent},
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterComponent},
-
+  {path: 'restaurant/:id', component: RestaurantDetailComponent},
   
   
 ];
@@ -62,15 +62,14 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule,
     RouterModule.forRoot(routes),
-    // AgmCoreModule.forRoot({
-    //   apiKey: KEYS.google_api_key
-    // })
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true}
-  ],
+  providers: [
+    // {
+    // provide: HTTP_INTERCEPTORS,
+    // useClass: TokenInterceptor,
+    // multi: true
+  // }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

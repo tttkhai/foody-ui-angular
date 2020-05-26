@@ -2,6 +2,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpEvent, HttpErrorResponse, HttpResponse } from '@angular/common/http'
 import { map, tap, catchError } from 'rxjs/operators'
+import { throwError } from 'rxjs';
+
 
 @Injectable({
 providedIn: 'root'
@@ -12,6 +14,13 @@ export class FoodyService {
 
   token: any
   user: any
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
+  
   constructor(private http: HttpClient) { }
 
   isLogin(){
@@ -19,7 +28,11 @@ export class FoodyService {
   }
 
   login(user: any){
-    return this.http.post(this.url+'login', user)
+    return this.http.post(this.url+'login', user).pipe(
+      catchError((error) => {  
+        return throwError(error);
+      })
+    )
   }
 
   getAllFoodTypes(){
@@ -35,7 +48,12 @@ export class FoodyService {
   }
   
   addNewUser(user: any){
-    return this.http.post(this.url+'addUser', user)
+    return this.http.post(this.url+'addUser', user).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    )
+  
   }
 
   getAllRestaurantTypes(){

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodyService } from '../service/foody.service'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login-page',
@@ -11,13 +10,14 @@ import { tap } from 'rxjs/operators';
 })
 export class LoginPageComponent implements OnInit {
   messageError: any
+  loading: Boolean=false
   user: User={
     'username': '',
     'password':''
   }
 
   loginForm: FormGroup
-  constructor(private appService: FoodyService, private form: FormBuilder) { }
+  constructor(private appService: FoodyService, private form: FormBuilder, private route: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.form.group({
@@ -27,21 +27,29 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(value){
+    this.loading=true
+
     this.user.username=value.username
     this.user.password=value.password
-    this.appService.login(this.user).pipe(
-      tap((err: any) => {  
-        if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-                this.messageError="Username or password is not correct"
-            }
-        }
-      })
-    ).subscribe((res: any)=>{
-      console.log("this is response : "+ JSON.stringify(res));
+    this.appService.login(this.user).subscribe((res: any)=>{
+      console.log("this is response : "+ JSON.stringify(res))
       this.appService.user=res.user
       this.appService.token=res.token
-    } )
+      localStorage.setItem('user', JSON.stringify(this.appService.user))
+      localStorage.setItem('token', JSON.stringify(this.appService.token))
+      
+      this.route.navigate(['/'])     
+      
+    }, (error)=>{
+      if (error.status === 401) {
+        this.messageError="Username or password is not correct"
+        console.log(this.messageError);     
+        return  
+      }
+    }, ()=>{
+      this.loading=false
+      
+    })
   }
 
 }

@@ -6,6 +6,7 @@
           <mat-label> Username </mat-label>
               <input matInput placeholder="Username" formControlName="username" />
         </mat-form-field>
+        <span *ngIf="errorMessage" style="color: red; margin-left: 30px;">{{errorMessage}}</span>
         <h4>Password</h4>
         <mat-form-field>
           <mat-label> Password </mat-label>

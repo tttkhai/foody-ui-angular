@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FoodyService } from '../service/foody.service'
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -7,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private appService: FoodyService) { }
+  id = this.route.snapshot.params['id'];
 
   ngOnInit() {
   }

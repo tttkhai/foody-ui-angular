@@ -1,1 +1,16 @@
-<p>header works!</p>
+<div class="header">
+    <a href="#default" class="logo">Foody</a>
+    <div class="header-right">
+        <div *ngIf="user; else notShow">
+            <a class="active">Hello, {{user?.firstName}} {{user?.lastName}}</a>
+            <a (click)="logout()" routerLink="/">Logout</a>
+        </div>
+        
+        <ng-template #notShow>
+            <a class="active" routerLink="/login">Signin</a>
+            <a routerLink="/register">Register</a>
+        </ng-template>
+      
+    </div>
+  </div>
+  

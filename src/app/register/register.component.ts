@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodyService } from '../service/foody.service'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router'
 export class RegisterComponent implements OnInit {
   newUserForm: FormGroup
   roles: any
+  errorMessage: any
   newUser: User={
     "username": "",
     "password": "",
@@ -64,8 +66,13 @@ export class RegisterComponent implements OnInit {
     this.newUser= value
     console.log("this is new user "+ JSON.stringify(this.newUser));
     
-    this.appService.addNewUser(this.newUser).subscribe(user=>{
-      this.router.navigate['/login']
+    this.appService.addNewUser(this.newUser).subscribe((user)=>{      
+      this.router.navigate(['/login'])
+    }, (error)=>{
+      if(error.status===409){     
+        this.errorMessage="Username is already existed"
+        console.log(this.errorMessage);     
+      }
     })
   }
 
