@@ -1,2 +1,30 @@
-<div>{{restaurant.name}}</div>
-<div>Add a review</div>
+<div>{{restaurant?.name}}</div>
+<div>
+  <div>
+    <span>Cleanliness</span>
+    <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
+        <li (click)="countStar(star)"
+            [ngClass]="{'selected': (star <= selectedValue)}">
+          <i class="fa fa-star"></i>
+        </li> 
+    </ul>
+  </div>
+  
+  <div>
+    <span>Customer Service</span>
+    <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
+        <li (click)="countStar(star)"
+            [ngClass]="{'selected': (star <= selectedValue)}">
+          <i class="fa fa-star"></i>
+        </li> 
+    </ul>
+  </div>
+
+  <div></div>
+
+  <div>Comment</div>
+</div>
+
+
+
+<button (click)="addReview()">Add a review</button>

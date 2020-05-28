@@ -25,6 +25,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component'
 import { TokenInterceptor } from './http-interceptors/token.interceptor';
 
+
 const routes: Routes = [
   {path: '', component: SearchLocationComponent},
   {path: 'addRestaurant', component: AddRestaurantComponent},
@@ -62,6 +63,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule,
     RouterModule.forRoot(routes),
+    
   ],
   providers: [
     // {

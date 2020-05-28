@@ -50,7 +50,7 @@ export class AddRestaurantComponent implements OnInit {
     console.log("Restaurant: "+JSON.stringify(this.restaurant));
     
     // this.appService.createNewRestaurant(this.restaurant, this.restaurant_type, this.food_types).subscribe(restaurants=>{
-    this.appService.createNewRestaurant(this.restaurant).subscribe()
+    // this.appService.createNewRestaurant(this.restaurant).subscribe()
   }
 
   allRestaurantTypes(){

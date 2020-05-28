@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private appService: FoodyService, private router: Router) {}
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("is login? "+ this.appService.isLogin());
         
         // if(this.appService.isLogin()){
 
@@ -33,6 +32,4 @@ export class TokenInterceptor implements HttpInterceptor {
             })
         )
     }
-// }
-
 }

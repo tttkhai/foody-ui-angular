@@ -17,15 +17,11 @@ export class FoodyService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
+      'Authorization': 'my-auth-token' + localStorage.getItem('token')
     })
   };
   
   constructor(private http: HttpClient) { }
-
-  isLogin(){
-    return typeof this.user !== 'undefined' && this.user
-  }
 
   login(user: any){
     return this.http.post(this.url+'login', user).pipe(
@@ -69,7 +65,9 @@ export class FoodyService {
   }
 
   addReviews(reviews: any){
-    return this.http.post(this.url, reviews)
+    return this.http.post(this.url, reviews, this.httpOptions).pipe(
+      
+    )
   }
 
   reviewsByRestaurant(restaurantId: any){
@@ -88,14 +86,14 @@ export class FoodyService {
     )
   }
 
-  createNewRestaurant(restaurant: any){
-    let bodyString = JSON.stringify({ restaurant});
-    let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
-    return this.http.post(this.url+'addRestaurant', bodyString, { headers });
-  }
+  // createNewRestaurant(restaurant: any){
+  //   let bodyString = JSON.stringify({ restaurant});
+  //   let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
+  //   return this.http.post(this.url+'addRestaurant', bodyString, { headers });
+  // }
 
   restaurantById(id: any){
-    this.http.get(this.url+'restaurant/'+id)
+    return this.http.get(this.url+'restaurant/'+id)
   }
 
   searchRestaurantByLocation(){
@@ -111,7 +109,7 @@ export class FoodyService {
   }
 
   updateReviews(id: any, review: any){
-    this.http.put(this.url+'updateReview/'+id, review)
+    this.http.put(this.url+'updateReview/'+id, review, this.httpOptions)
   }
 }
 
