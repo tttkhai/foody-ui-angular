@@ -32,7 +32,7 @@ export class FoodyService {
   }
 
   getAllFoodTypes(){
-    return this.http.get(this.url+'getFoodTypes').pipe(
+    return this.http.get(this.url+'foodTypes').pipe(
       map(foodType =>{
         return foodType
       })
@@ -44,7 +44,7 @@ export class FoodyService {
   }
   
   addNewUser(user: any){
-    return this.http.post(this.url+'addUser', user).pipe(
+    return this.http.post(this.url+'newUser', user).pipe(
       catchError((error) => {
         return throwError(error);
       })
@@ -105,11 +105,11 @@ export class FoodyService {
   }
 
   deleteReviews(id: any){
-    this.http.delete(this.url+'deleteReview/'+id)
+    this.http.delete(this.url+'review/'+id)
   }
 
   updateReviews(id: any, review: any){
-    this.http.put(this.url+'updateReview/'+id, review, this.httpOptions)
+    this.http.put(this.url+'review/'+id, review, this.httpOptions)
   }
 }
 
