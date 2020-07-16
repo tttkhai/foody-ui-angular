@@ -4,7 +4,7 @@
     <table style="width:40%">
       <tr *ngFor="let review of reviews">
         <td>{{review}}</td>
-        <td><app-rating></app-rating> </td>
+        <td><app-rating [service]="hello"></app-rating> </td>
       </tr>
       
     </table>
