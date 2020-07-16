@@ -2,29 +2,28 @@
 <div>
   <div>
     <span>Cleanliness</span>
-    <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
-        <li (click)="countStar(star)"
-            [ngClass]="{'selected': (star <= selectedValue)}">
-          <i class="fa fa-star"></i>
-        </li> 
-    </ul>
-  </div>
-  
+    <app-rating></app-rating>
+
+    
+  </div> 
   <div>
     <span>Customer Service</span>
-    <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
-        <li (click)="countStar(star)"
-            [ngClass]="{'selected': (star <= selectedValue)}">
-          <i class="fa fa-star"></i>
-        </li> 
-    </ul>
+    <app-rating></app-rating>
   </div>
 
-  <div></div>
+  <div>
+    <span>Delivery</span>
+    <app-rating></app-rating>
+  </div>
+
+  <div>
+    <span>Taste</span>
+    <app-rating></app-rating>
+  </div>
 
   <div>Comment</div>
 </div>
 
 
 
-<button (click)="addReview()">Add a review</button>
+<button (click)="addReview()">Submit</button>

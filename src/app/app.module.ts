@@ -24,6 +24,7 @@ import { KEYS } from './keys/keys';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component'
 import { TokenInterceptor } from './http-interceptors/token.interceptor';
+import { RatingComponent } from './rating/rating.component';
 
 
 const routes: Routes = [
@@ -50,7 +51,8 @@ const routes: Routes = [
     FooterComponent,
     AddRestaurantComponent,
     LoginPageComponent,
-    RegisterComponent
+    RegisterComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

@@ -14,8 +14,7 @@ export class RestaurantDetailComponent implements OnInit {
   id = this.route.snapshot.params['id'];
   reviews=['cleanliness', 'customer_service', 'deliver', 'taste', 'comment', 'restaurant_id', 'user_id']
   restaurant: any
-  stars: number[] = [1, 2, 3, 4, 5];
-  selectedValue: number;
+  
   review: Review={
     cleanliness: null,
     customer_service: null,
@@ -38,10 +37,7 @@ export class RestaurantDetailComponent implements OnInit {
   addReview(){
     this.appService.addReviews(this.review).subscribe()
   }
-  countStar(star) {
-    this.selectedValue = star;
-    console.log('Value of star', star);
-  }
+  
 
 }
 
