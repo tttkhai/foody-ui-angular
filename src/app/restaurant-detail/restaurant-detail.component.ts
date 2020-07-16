@@ -12,9 +12,9 @@ export class RestaurantDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private appService: FoodyService) { }
   id = this.route.snapshot.params['id'];
-  reviews=['cleanliness', 'customer_service', 'deliver', 'taste', 'comment', 'restaurant_id', 'user_id']
+  reviews=['Cleanliness', 'Customer Service', 'Delivery', 'Taste']
   restaurant: any
-  
+  hello: any
   review: Review={
     cleanliness: null,
     customer_service: null,

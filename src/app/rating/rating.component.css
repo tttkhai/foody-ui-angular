@@ -11,7 +11,7 @@
   }
   
   .rating-list {
-    /* display: inline-block; */
-    display: inline; 
+    display: inline-block;
+    /* display: inline;  */
     list-style: none;
   }

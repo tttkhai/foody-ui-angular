@@ -1,29 +1,19 @@
-<div>{{restaurant?.name}}</div>
-<div>
+<div class="container">
+  <h1 style="color: red; margin: 10px">{{restaurant?.name}}</h1>
   <div>
-    <span>Cleanliness</span>
-    <app-rating></app-rating>
-
-    
-  </div> 
-  <div>
-    <span>Customer Service</span>
-    <app-rating></app-rating>
+    <table style="width:40%">
+      <tr *ngFor="let review of reviews">
+        <td>{{review}}</td>
+        <td><app-rating></app-rating> </td>
+      </tr>
+      
+    </table>
+    <div class="mb-2">Comment</div>
+    <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
   </div>
 
-  <div>
-    <span>Delivery</span>
-    <app-rating></app-rating>
-  </div>
 
-  <div>
-    <span>Taste</span>
-    <app-rating></app-rating>
-  </div>
 
-  <div>Comment</div>
+  <button (click)="addReview()">Submit</button>
+
 </div>
-
-
-
-<button (click)="addReview()">Submit</button>
