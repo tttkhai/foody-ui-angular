@@ -38,7 +38,7 @@ export class LoginPageComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(this.appService.user))
       localStorage.setItem('token', JSON.stringify(this.appService.token))
       
-      this.route.navigate(['/'])     
+      window.location.href = "/";   
       
     }, (error)=>{
       if (error.status === 401) {

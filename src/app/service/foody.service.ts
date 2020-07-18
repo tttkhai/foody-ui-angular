@@ -17,7 +17,7 @@ export class FoodyService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + this.getToken()
     })
   };
   
@@ -52,6 +52,15 @@ export class FoodyService {
   
   }
 
+  getUser(){
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
+  getToken(){
+    return JSON.parse(localStorage.getItem('token'));
+
+  }
+
   getAllRestaurantTypes(){
     return this.http.get(this.url+'restaurantTypes').pipe(
       map(restaurantType =>{
@@ -65,7 +74,7 @@ export class FoodyService {
   }
 
   addReviews(reviews: any){
-    return this.http.post(this.url, reviews, this.httpOptions).pipe(
+    return this.http.post(this.url+'newReview', reviews, this.httpOptions).pipe(
       
     )
   }

@@ -15,9 +15,10 @@ export class HeaderComponent implements OnInit {
   constructor(private appService: FoodyService, private route: Router) { }
 
   ngOnInit(): void {  
-    this.user=JSON.parse(localStorage.getItem('user'))
+    
+    this.user=this.appService.getUser();
     this.token=localStorage.getItem('token')
-    console.log("user is "+ JSON.stringify(this.user));
+    console.log("IMPORTANT: user is "+ JSON.stringify(this.user));
 
   }
 
