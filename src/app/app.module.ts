@@ -25,6 +25,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component'
 import { TokenInterceptor } from './http-interceptors/token.interceptor';
 import { RatingComponent } from './rating/rating.component';
+import { ReviewListComponent } from './review-list/review-list.component';
+import { NewReviewComponent } from './new-review/new-review.component';
 
 
 const routes: Routes = [
@@ -52,7 +54,9 @@ const routes: Routes = [
     AddRestaurantComponent,
     LoginPageComponent,
     RegisterComponent,
-    RatingComponent
+    RatingComponent,
+    ReviewListComponent,
+    NewReviewComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpEvent, HttpErrorResponse, HttpResponse } from '@angular/common/http'
 import { map, tap, catchError } from 'rxjs/operators'
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
+import { Review } from './../new-review/new-review.component';
+import { summaryFileName } from '@angular/compiler/src/aot/util';
 
 
 @Injectable({
@@ -74,13 +76,11 @@ export class FoodyService {
   }
 
   addReviews(reviews: any){
-    return this.http.post(this.url+'newReview', reviews, this.httpOptions).pipe(
-      
-    )
+    return this.http.post(this.url+'newReview', reviews, this.httpOptions)
   }
 
-  reviewsByRestaurant(restaurantId: any){
-    return this.http.get(this.url+'reviews/restaurant=?'+restaurantId).pipe(
+  reviewsByRestaurant(restaurantId: number): Observable<Review>{
+    return this.http.get(this.url+'reviews/'+restaurantId, this.httpOptions).pipe(
       map((review: any)=>{
         return review
       })
@@ -104,6 +104,18 @@ export class FoodyService {
   restaurantById(id: any){
     return this.http.get(this.url+'restaurant/'+id)
   }
+
+  addTotal(element: []): number{
+    if(element.length==0){
+      return;
+    }
+    var sum=0;
+    for(var i=0; i<element.length; i++){
+      sum+=element[i];
+    }
+    return sum/element.length;
+  }
+
 
   searchRestaurantByLocation(){
     this.http.get(this.url+'results').pipe(

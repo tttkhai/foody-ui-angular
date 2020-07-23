@@ -1,17 +1,9 @@
 <div class="container">
   <h1 style="color: red; margin: 10px">{{restaurant?.name}}</h1>
   <div>
-    <table style="width:40%">
-      <tr *ngFor="let review of reviews">
-        <td>{{review}}</td>
-        <td><app-rating (reviewStar)="updateStar($event, review)"></app-rating> </td>
-      </tr>
-      
-    </table>
-    <div class="mb-2">Comment</div>
-    <textarea id="w3review" name="w3review" rows="4" cols="50" id="comment"></textarea>
+    <app-new-review [restaurant]="restaurant"></app-new-review>
   </div>
 
-  <button (click)="addReview(review)">Submit</button>
-
+  <h3>Customer Review: </h3>
+  <app-review-list [restaurant_id]="id"></app-review-list>
 </div>

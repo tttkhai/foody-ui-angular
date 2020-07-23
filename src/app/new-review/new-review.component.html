@@ -1,0 +1,10 @@
+<table style="width:40%;">
+      <tr *ngFor="let review of reviews">
+        <td >{{review}}</td>
+        <td><app-rating (reviewStar)="updateStar($event, review)"></app-rating> </td>
+      </tr>
+      
+    </table>
+    <div class="mb-2">Comment</div>
+    <textarea id="w3review" name="w3review" rows="2" cols="40" id="comment"></textarea>
+  <button (click)="addReview(review)">Submit</button>
