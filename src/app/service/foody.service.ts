@@ -1,10 +1,10 @@
+import { AuthenticationService } from './authentication.service';
 // import { KEYS } from './../Constants';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpEvent, HttpErrorResponse, HttpResponse } from '@angular/common/http'
-import { map, tap, catchError } from 'rxjs/operators'
-import { throwError, Observable } from 'rxjs';
-import { Review } from './../new-review/new-review.component';
-import { summaryFileName } from '@angular/compiler/src/aot/util';
+import {HttpClient, HttpHeaders } from '@angular/common/http'
+import { map } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+
 
 
 @Injectable({
@@ -19,19 +19,11 @@ export class FoodyService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Bearer ' + this.getToken()
+      'Authorization': 'Bearer ' 
     })
   };
   
-  constructor(private http: HttpClient) { }
-
-  login(user: any){
-    return this.http.post(this.url+'login', user).pipe(
-      catchError((error) => {  
-        return throwError(error);
-      })
-    )
-  }
+  constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
   getAllFoodTypes(){
     return this.http.get(this.url+'foodTypes').pipe(
@@ -39,28 +31,6 @@ export class FoodyService {
         return foodType
       })
     )
-  }
-
-  getAllRoles(){
-    return this.http.get(this.url+'roles')
-  }
-  
-  addNewUser(user: any){
-    return this.http.post(this.url+'newUser', user).pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    )
-  
-  }
-
-  getUser(){
-    return JSON.parse(localStorage.getItem('user'));
-  }
-
-  getToken(){
-    return JSON.parse(localStorage.getItem('token'));
-
   }
 
   getAllRestaurantTypes(){
@@ -79,7 +49,7 @@ export class FoodyService {
     return this.http.post(this.url+'newReview', reviews, this.httpOptions)
   }
 
-  reviewsByRestaurant(restaurantId: number): Observable<Review>{
+  reviewsByRestaurant(restaurantId: number){
     return this.http.get(this.url+'reviews/'+restaurantId, this.httpOptions).pipe(
       map((review: any)=>{
         return review
@@ -94,12 +64,6 @@ export class FoodyService {
       })
     )
   }
-
-  // createNewRestaurant(restaurant: any){
-  //   let bodyString = JSON.stringify({ restaurant});
-  //   let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
-  //   return this.http.post(this.url+'addRestaurant', bodyString, { headers });
-  // }
 
   restaurantById(id: any){
     return this.http.get(this.url+'restaurant/'+id)

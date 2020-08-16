@@ -1,7 +1,8 @@
+import { AuthenticationService } from './../service/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { FoodyService } from '../service/foody.service'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
+import { AuthCredential } from '../models/AuthCredential';
 
 @Component({
   selector: 'app-login-page',
@@ -11,13 +12,13 @@ import { Router } from '@angular/router'
 export class LoginPageComponent implements OnInit {
   messageError: any
   loading: Boolean=false
-  user: User={
+  credentials: AuthCredential={
     'username': '',
     'password':''
   }
 
   loginForm: FormGroup
-  constructor(private appService: FoodyService, private form: FormBuilder, private route: Router) { }
+  constructor(private appService: AuthenticationService, private form: FormBuilder, private route: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.form.group({
@@ -29,14 +30,14 @@ export class LoginPageComponent implements OnInit {
   onSubmit(value){
     this.loading=true
 
-    this.user.username=value.username
-    this.user.password=value.password
-    this.appService.login(this.user).subscribe((res: any)=>{
+    let username=value.username
+    let password=value.password
+    this.appService.login(username, password).subscribe((res: any)=>{
       console.log("this is response : "+ JSON.stringify(res))
-      this.appService.user=res.user
-      this.appService.token=res.token
-      localStorage.setItem('user', JSON.stringify(this.appService.user))
-      localStorage.setItem('token', JSON.stringify(this.appService.token))
+      // this.appService.user=res.user
+      // this.appService.token=res.token
+      // localStorage.setItem('currentUser', JSON.stringify(this.appService.user))
+      // localStorage.setItem('token', JSON.stringify(this.appService.token))
       
       window.location.href = "/";   
       
@@ -47,14 +48,8 @@ export class LoginPageComponent implements OnInit {
         return  
       }
     }, ()=>{
-      this.loading=false
-      
+      this.loading=false    
     })
   }
 
-}
-
-export interface User{
-  'username': String,
-  'password': String
 }
