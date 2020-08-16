@@ -1,3 +1,4 @@
+import { Review } from './../models/Review';
 import { FoodyService } from './../service/foody.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -21,7 +22,7 @@ export class NewReviewComponent implements OnInit {
     taste: 1 ,
     comment: '',
     restaurant: this.restaurant,
-    user: this.appService.getUser()
+    user: localStorage.getItem('currentUser')
   }
 
   ngOnInit(): void {
@@ -49,18 +50,8 @@ export class NewReviewComponent implements OnInit {
       this.review.deliver=star;
     }   
     console.log("service: "+ service+ " has: "+ star+" stars");
-    console.log("clean: "+this.review.cleanliness);
-    
+    console.log("clean: "+this.review.cleanliness);  
   }
-
+  
 }
 
-export interface Review{
-  cleanliness: number,
-  customer_service: number,
-  deliver: number,
-  taste: number ,
-  comment: String,
-  restaurant: any,
-  user: any
-}

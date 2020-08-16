@@ -1,5 +1,5 @@
 import { FoodyService } from './../service/foody.service';
-import { Review } from './../new-review/new-review.component';
+import { Review } from '../models/Review';
 import { Observable } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -15,7 +15,7 @@ export class ReviewListComponent implements OnInit {
   @Input() restaurant_id: number
 
   constructor(private appService: FoodyService) { }
-  reviews: Review
+  reviews: Review[]
   ngOnInit(): void {
     this.reviewsByRestaurant()
   }

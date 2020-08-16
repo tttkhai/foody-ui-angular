@@ -23,10 +23,11 @@ import { AddRestaurantComponent } from './add-restaurant/add-restaurant.componen
 import { KEYS } from './keys/keys';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component'
-import { TokenInterceptor } from './http-interceptors/token.interceptor';
 import { RatingComponent } from './rating/rating.component';
 import { ReviewListComponent } from './review-list/review-list.component';
 import { NewReviewComponent } from './new-review/new-review.component';
+import { JwtInterceptor } from './helper/jwt.interceptor';
+import { ErrorInterceptor } from './helper/error.interceptor';
 
 
 const routes: Routes = [
@@ -35,8 +36,7 @@ const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'restaurant/:id', component: RestaurantDetailComponent},
-  
-  
+
 ];
 
 
@@ -72,11 +72,8 @@ const routes: Routes = [
     
   ],
   providers: [
-    // {
-    // provide: HTTP_INTERCEPTORS,
-    // useClass: TokenInterceptor,
-    // multi: true
-  // }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },   
 ],
   bootstrap: [AppComponent]
 })

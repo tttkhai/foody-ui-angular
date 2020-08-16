@@ -16,12 +16,7 @@ export class FoodyService {
 
   token: any
   user: any
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'Bearer ' 
-    })
-  };
+  
   
   constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
@@ -46,11 +41,11 @@ export class FoodyService {
   }
 
   addReviews(reviews: any){
-    return this.http.post(this.url+'newReview', reviews, this.httpOptions)
+    return this.http.post(this.url+'newReview', reviews)
   }
 
   reviewsByRestaurant(restaurantId: number){
-    return this.http.get(this.url+'reviews/'+restaurantId, this.httpOptions).pipe(
+    return this.http.get(this.url+'reviews/'+restaurantId).pipe(
       map((review: any)=>{
         return review
       })
@@ -94,7 +89,7 @@ export class FoodyService {
   }
 
   updateReviews(id: any, review: any){
-    this.http.put(this.url+'review/'+id, review, this.httpOptions)
+    this.http.put(this.url+'review/'+id, review)
   }
 }
 

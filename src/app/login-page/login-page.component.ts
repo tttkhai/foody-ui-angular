@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
 import { AuthCredential } from '../models/AuthCredential';
+import { first } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login-page',
@@ -18,7 +20,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginForm: FormGroup
-  constructor(private appService: AuthenticationService, private form: FormBuilder, private route: Router) { }
+  constructor(private authService: AuthenticationService, private form: FormBuilder, private router: Router) { 
+    if (this.authService.currentUserValue) { 
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit(): void {
     this.loginForm = this.form.group({
@@ -32,19 +38,14 @@ export class LoginPageComponent implements OnInit {
 
     let username=value.username
     let password=value.password
-    this.appService.login(username, password).subscribe((res: any)=>{
-      console.log("this is response : "+ JSON.stringify(res))
-      // this.appService.user=res.user
-      // this.appService.token=res.token
-      // localStorage.setItem('currentUser', JSON.stringify(this.appService.user))
-      // localStorage.setItem('token', JSON.stringify(this.appService.token))
-      
-      window.location.href = "/";   
-      
+    this.authService.login(username, password).pipe(first()).subscribe((res: any)=>{
+      console.log("this is response : "+ JSON.stringify(res));   
+      this.router.navigate["/"];        
     }, (error)=>{
       if (error.status === 401) {
         this.messageError="Username or password is not correct"
-        console.log(this.messageError);     
+        console.log(this.messageError);    
+        this.loading=false    
         return  
       }
     }, ()=>{
