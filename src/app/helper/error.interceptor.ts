@@ -9,10 +9,7 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/c
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(private authService: AuthenticationService) {}
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-        if(request.headers.get("skip")){
-            request = request.clone({
-                headers: request.headers.delete('skip')
-            });
+        if(request.url.search('/signin') || request.url.search('/register')){
             return next.handle(request);
         }else { 
             return next.handle(request).pipe(catchError((err)=>{
