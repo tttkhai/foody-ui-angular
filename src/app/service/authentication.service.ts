@@ -53,15 +53,6 @@ export class AuthenticationService {
     this.currentUserSubject.next(null);
   }
 
-  // getUser(){
-  //   return JSON.parse(localStorage.getItem('currentUser'));
-  // }
-
-  // getToken(){
-  //   return JSON.parse(localStorage.getItem('token'));
-
-  // }
-
   getAllRoles(){
     return this.http.get(this.url+'roles')
   }
