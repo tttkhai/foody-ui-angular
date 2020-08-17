@@ -39,7 +39,6 @@ export class LoginPageComponent implements OnInit {
     let username=value.username
     let password=value.password
     this.authService.login(username, password).pipe(first()).subscribe((res: any)=>{
-      console.log("this is response : "+ JSON.stringify(res));   
       this.router.navigate["/"];        
     }, (error)=>{
       if (error.status === 401) {

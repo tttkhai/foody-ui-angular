@@ -1,6 +1,9 @@
 import { AuthenticationService } from './../service/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { User } from '../models/User';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-header',
@@ -9,16 +12,27 @@ import { Router } from '@angular/router'
 })
 export class HeaderComponent implements OnInit {
 
-  user: any
+  users: any
   isLogin: Boolean
   token: any
-  constructor(private authService: AuthenticationService, private route: Router) { }
+  currentUser: User
+  currentUserSubscription: Subscription
+  constructor(private authService: AuthenticationService, private router: Router) {
+    this.currentUserSubscription = this.authService.currentUser.subscribe((user:any) => {
+      
+      this.currentUser = user;
+      console.log("current user: "+  JSON.stringify(this.currentUser));
+
+    });
+  }
 
   ngOnInit(): void {  
     
-    // this.user=this.appService.getUser();
-    // this.token=localStorage.getItem('token')
-    console.log("IMPORTANT: user is "+ JSON.stringify(this.user));
+    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {  
+      this.currentUser = user;
+      console.log("current user: "+  JSON.stringify(this.currentUser));
+
+    });
 
   }
 

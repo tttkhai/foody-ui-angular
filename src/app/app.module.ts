@@ -33,9 +33,9 @@ import { ErrorInterceptor } from './helper/error.interceptor';
 const routes: Routes = [
   {path: '', component: SearchLocationComponent},
   {path: 'addRestaurant', component: AddRestaurantComponent},
-  {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'restaurant/:id', component: RestaurantDetailComponent},
+  {path: 'signin', component: LoginPageComponent},
 
 ];
 
