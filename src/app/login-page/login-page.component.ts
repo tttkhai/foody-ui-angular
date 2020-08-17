@@ -35,11 +35,11 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(value){
     this.loading=true
-
+    this.messageError=""
     let username=value.username
     let password=value.password
-    this.authService.login(username, password).pipe(first()).subscribe((res: any)=>{
-      this.router.navigate["/"];        
+    this.authService.login(username, password).subscribe((res)=>{
+      this.router.navigate(["/"]);        
     }, (error)=>{
       if (error.status === 401) {
         this.messageError="Username or password is not correct"
@@ -47,7 +47,7 @@ export class LoginPageComponent implements OnInit {
         this.loading=false    
         return  
       }
-    }, ()=>{
+    },()=>{
       this.loading=false    
     })
   }

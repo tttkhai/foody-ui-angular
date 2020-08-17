@@ -26,7 +26,7 @@ export class AuthenticationService {
   }
 
   register(user: any){
-    return this.http.post(this.url+'newUser', user).pipe(
+    return this.http.post(this.url+'newUser', user, {headers:{skip:"true"}}).pipe(
       catchError((error) => {
         return throwError(error);
       })
@@ -34,7 +34,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<User> {
-    return this.http.post<User>(this.url+'login', {username, password}).pipe(
+    return this.http.post<User>(this.url+'login', {username, password}, {headers:{skip:"true"}}).pipe(
       map((user)=>{
         if(user && user.token){
           localStorage.setItem('currentUser', JSON.stringify(user));

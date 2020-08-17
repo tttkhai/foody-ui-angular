@@ -9,13 +9,22 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/c
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(private authService: AuthenticationService) {}
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-        return next.handle(request).pipe(catchError((err)=>{
-            if(err.status===401){
-                this.authService.logout();
-                location.reload(true);
-            }
-            const error = err.error.message || err.statusText;
-            return throwError(error);
-        }))
+        if(request.headers.get("skip")){
+            request = request.clone({
+                headers: request.headers.delete('skip')
+            });
+            return next.handle(request);
+        }else { 
+            return next.handle(request).pipe(catchError((err)=>{
+                if(err.status===401){
+                    this.authService.logout();
+                    location.reload(true);
+                    console.log("error interceptor is being called");
+                
+                    const error = err.error.message || err.statusText;
+                    return throwError(error);
+                }               
+            }))
+        }
     }
 }
