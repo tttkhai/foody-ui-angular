@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -6,13 +6,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./rating.component.css']
 })
 export class RatingComponent implements OnInit{
-  // @Input() service: string;
   @Output() reviewStar= new EventEmitter<number>();
 
-
-  ngOnInit() {
-    // console.log("this is selected service: " +this.service);
-    
+  ngOnInit() {    
   }
   stars: number[] = [1, 2, 3, 4, 5];
   selectedValue: number
@@ -20,6 +16,4 @@ export class RatingComponent implements OnInit{
     this.selectedValue=star;
     this.reviewStar.emit(star);   
   }
-
-
 }

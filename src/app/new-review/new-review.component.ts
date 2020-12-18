@@ -11,8 +11,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NewReviewComponent implements OnInit {
 
   constructor(private appService: FoodyService) { }
-  @Input() restaurant: string
-  
+
+  @Input() set restaurant(value:string) {
+    this.review.restaurant = value;
+  };
   reviews=['cleanliness', 'customer_service', 'deliver', 'taste']
   selectedService: string
   review: Review={
@@ -21,17 +23,17 @@ export class NewReviewComponent implements OnInit {
     deliver: 1,
     taste: 1 ,
     comment: '',
-    restaurant: this.restaurant,
+    restaurant: null,
     user: localStorage.getItem('currentUser')
   }
 
   ngOnInit(): void {
+    this.reviews
   }
 
   addReview(review: any){
     review.restaurant=this.restaurant;
     review.comment=(<HTMLInputElement>document.getElementById("comment")).value;
-    console.log("REVIEW: "+ JSON.stringify(review));
     
     this.appService.addReviews(review).subscribe();
   }
@@ -49,8 +51,6 @@ export class NewReviewComponent implements OnInit {
     if(service==="deliver"){
       this.review.deliver=star;
     }   
-    console.log("service: "+ service+ " has: "+ star+" stars");
-    console.log("clean: "+this.review.cleanliness);  
   }
   
 }

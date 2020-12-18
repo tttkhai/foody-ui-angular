@@ -19,10 +19,7 @@ export class HeaderComponent implements OnInit {
   currentUserSubscription: Subscription
   constructor(private authService: AuthenticationService, private router: Router) {
     this.currentUserSubscription = this.authService.currentUser.subscribe((user:any) => {
-      
       this.currentUser = user;
-      console.log("current user: "+  JSON.stringify(this.currentUser));
-
     });
   }
 
@@ -30,8 +27,6 @@ export class HeaderComponent implements OnInit {
     
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {  
       this.currentUser = user;
-      console.log("current user: "+  JSON.stringify(this.currentUser));
-
     });
 
   }

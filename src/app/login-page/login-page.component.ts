@@ -43,7 +43,6 @@ export class LoginPageComponent implements OnInit {
     }, (error)=>{
       if (error.status === 401) {
         this.messageError="Username or password is not correct"
-        console.log(this.messageError);    
         this.loading=false    
         return  
       }

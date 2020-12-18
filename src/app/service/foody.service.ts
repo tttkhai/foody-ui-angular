@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
-
+import { Preferences, Restaurant } from '../models/Restaurant';
 
 
 @Injectable({
@@ -36,8 +36,8 @@ export class FoodyService {
       )
   }
 
-  getRestaurantListByPreferences(preference: any){
-    return this.http.post(this.url+'restaurantList', preference)
+  getRestaurantListByPreferences(preference: any): Observable<Restaurant[]>{
+    return this.http.post<Restaurant[]>(this.url+'restaurantList', preference);
   }
 
   addReviews(reviews: any){

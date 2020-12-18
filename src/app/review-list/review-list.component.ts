@@ -20,11 +20,8 @@ export class ReviewListComponent implements OnInit {
     this.reviewsByRestaurant()
   }
 
-  reviewsByRestaurant(){
-    // console.log("Restaurant: important: "+JSON.stringify(this.restaurant));
-    
+  reviewsByRestaurant(){    
     this.appService.reviewsByRestaurant(this.restaurant_id).subscribe(review=>{
-      console.log("this is all the reviews: "+JSON.stringify(review));
       this.reviews=review
     }) 
   }

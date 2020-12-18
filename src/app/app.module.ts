@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
-import { UserInfoComponent } from './user-info/user-info.component';
 import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.component';
 import { SearchLocationComponent } from './search-location/search-location.component';
 import { ResultListComponent } from './result-list/result-list.component';
@@ -13,9 +11,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -35,17 +33,13 @@ const routes: Routes = [
   {path: 'addRestaurant', component: AddRestaurantComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'restaurant/:id', component: RestaurantDetailComponent},
-  {path: 'signin', component: LoginPageComponent},
-
+  {path: 'signin', component: LoginPageComponent}
 ];
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent,
     RestaurantDetailComponent,
-    UserInfoComponent,
     AllRestaurantsComponent,
     SearchLocationComponent,
     ResultListComponent,
@@ -64,6 +58,7 @@ const routes: Routes = [
     HttpClientModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTableModule,
     MatInputModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

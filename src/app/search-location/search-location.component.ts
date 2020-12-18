@@ -1,7 +1,7 @@
 import { FoodyService } from '../service/foody.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-// import {AgmMap, MouseEvent,MapsAPILoader  } from '@agm/core';  
+import { Preferences, Restaurant } from '../models/Restaurant';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class SearchLocationComponent implements OnInit {
   miles : number[] = [3,5,10,20]
   food_types: any
   restaurant_types: any
-  restaurantList: any
+  restaurantList: Restaurant[]
   preferences: Preferences={
     lat: null,
     lng: null, 
@@ -42,15 +42,12 @@ export class SearchLocationComponent implements OnInit {
   getFoodTypes(){
     this.appService.getAllFoodTypes().subscribe(foodtype=>{
       this.food_types=foodtype
-      console.log(this.food_types);
     })
   }
 
   getRestaurantTypes(){
     this.appService.getAllRestaurantTypes().subscribe(cuisine=>{
       this.restaurant_types=cuisine
-      console.log(this.restaurant_types);
-
     })
   }
 
@@ -62,24 +59,14 @@ export class SearchLocationComponent implements OnInit {
         this.preferences.food_types=myForm.foodType
         this.preferences.cuisine=myForm.restaurantType
         this.preferences.distance=myForm.miles
-        console.log("IMPORTANT: "+JSON.stringify(this.preferences));
-        this.appService.getRestaurantListByPreferences(this.preferences).subscribe((list: any)=>{
-          this.restaurantList=list
-          console.log("RETURN restaurant list: "+JSON.stringify(this.restaurantList))         
+        this.appService.getRestaurantListByPreferences(this.preferences).subscribe(list=>{
+          this.restaurantList=list;
         })
       });
     } else {
       alert("Geolocation is not supported by this browser.");
     }
   }  
-}
-
-export interface Preferences{
-  lat: Number,
-  lng: Number, 
-  cuisine: Number[],
-  food_types: Number[],
-  distance: Number
 }
 
 
