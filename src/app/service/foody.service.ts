@@ -40,7 +40,7 @@ export class FoodyService {
     return this.http.post<Restaurant[]>(this.url+'restaurantList', preference);
   }
 
-  addReviews(reviews: any){
+  addReview(reviews: any){
     return this.http.post(this.url+'newReview', reviews)
   }
 

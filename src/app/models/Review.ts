@@ -4,6 +4,6 @@ export interface Review{
     deliver: number,
     taste: number ,
     comment: String,
-    restaurant: any,
-    user: any
+    restaurant_id: Number,
+    user_id: Number
   }

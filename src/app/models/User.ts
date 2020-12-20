@@ -1,6 +1,6 @@
 export interface User{
+    "id": Number,
     "username": String,
-    "password": String,
     "firstName": String,
     "lastName": String,
     "email": String,
@@ -9,6 +9,12 @@ export interface User{
     "role": {
       "id": Number,
       "name": String
-    },
-    token: String
+    }
+  }
+
+  export interface UserAuthentication{
+    "id": Number,
+    "firstName": String,
+    "lastName": String,
+    "token": String
   }

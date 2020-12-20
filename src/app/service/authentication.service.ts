@@ -1,4 +1,4 @@
-import { User } from './../models/User';
+import { User, UserAuthentication } from './../models/User';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -12,16 +12,16 @@ import { catchError, map } from 'rxjs/operators';
 export class AuthenticationService {
   url='http://localhost:8081/api/'
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<UserAuthentication>;
+  public currentUser: Observable<UserAuthentication>;
 
 
   constructor(private http: HttpClient) { 
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<UserAuthentication>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser=this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User{
+  public get currentUserValue() {
     return this.currentUserSubject.value;
   }
 
@@ -33,10 +33,11 @@ export class AuthenticationService {
     )
   }
 
-  login(username: string, password: string): Observable<User> {
-    return this.http.post<User>(this.url+'login', {username, password}, {headers:{skip:"true"}}).pipe(
+  login(username: string, password: string): Observable<UserAuthentication> {
+    return this.http.post<UserAuthentication>(this.url+'login', {username, password}, {headers:{skip:"true"}}).pipe(
       map((user)=>{
         if(user && user.token){
+          console.log("this is user: "+JSON.stringify(user));
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }

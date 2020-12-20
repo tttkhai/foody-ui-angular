@@ -1,7 +1,7 @@
 import { AuthenticationService } from './../service/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../models/User';
+import { UserAuthentication } from '../models/User';
 import { Subscription } from 'rxjs';
 
 
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   users: any
   isLogin: Boolean
   token: any
-  currentUser: User
+  currentUser: UserAuthentication
   currentUserSubscription: Subscription
   constructor(private authService: AuthenticationService, private router: Router) {
     this.currentUserSubscription = this.authService.currentUser.subscribe((user:any) => {
@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {  
-    
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {  
       this.currentUser = user;
     });
