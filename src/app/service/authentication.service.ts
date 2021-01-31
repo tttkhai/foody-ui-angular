@@ -26,11 +26,7 @@ export class AuthenticationService {
   }
 
   register(user: any){
-    return this.http.post(this.url+'newUser', user, {headers:{skip:"true"}}).pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    )
+    return this.http.post(this.url+'register', user, {headers:{skip:"true"}, responseType: 'text' })
   }
 
   login(username: string, password: string): Observable<UserAuthentication> {

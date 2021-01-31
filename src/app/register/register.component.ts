@@ -1,4 +1,3 @@
-import { User } from './../models/User';
 import { AuthenticationService } from './../service/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -22,20 +21,17 @@ export class RegisterComponent implements OnInit {
       "password": new FormControl('', [Validators.required]),
       "firstName": new FormControl('', [Validators.required]),
       "lastName": new FormControl('', [Validators.required]),
-      "email": new FormControl('', [Validators.required, Validators.email]),
+      "email": new FormControl('', [Validators.email]),
       "address": new FormControl('', [Validators.required]),
       "phoneNumber": new FormControl('', [Validators.required]),
-      "role": {
-        "id": 1,
-        "name": 'user'
-      },
+      "role_id": new FormControl('', [Validators.required])
     })
     this.appService.getAllRoles().subscribe(roles=>this.roles=roles)
   }
 
   register(value){  
-    this.appService.register(value).subscribe(()=>{      
-      this.router.navigate(['/login'])
+    this.appService.register(value).subscribe((res)=>{
+      this.router.navigate(["/signin"]);        
     }, (error)=>{
       if(error.status===409){     
         this.errorMessage="Username is already existed"
