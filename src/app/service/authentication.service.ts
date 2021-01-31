@@ -1,4 +1,4 @@
-import { User, UserAuthentication } from './../models/User';
+import { UserAuthentication } from './../models/User';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -37,7 +37,6 @@ export class AuthenticationService {
     return this.http.post<UserAuthentication>(this.url+'login', {username, password}, {headers:{skip:"true"}}).pipe(
       map((user)=>{
         if(user && user.token){
-          console.log("this is user: "+JSON.stringify(user));
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }

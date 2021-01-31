@@ -21,6 +21,7 @@ export class LoginPageComponent implements OnInit {
 
   loginForm: FormGroup
   constructor(private authService: AuthenticationService, private form: FormBuilder, private router: Router) { 
+  // redirect to home if already logged in
     if (this.authService.currentUserValue) { 
       this.router.navigate(['/']);
     }
@@ -38,7 +39,7 @@ export class LoginPageComponent implements OnInit {
     this.messageError=""
     let username=value.username
     let password=value.password
-    this.authService.login(username, password).subscribe((res)=>{
+    this.authService.login(username, password).pipe(first()).subscribe((res)=>{
       this.router.navigate(["/"]);        
     }, (error)=>{
       if (error.status === 401) {

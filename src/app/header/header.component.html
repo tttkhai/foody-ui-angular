@@ -2,7 +2,7 @@
     <a href="#default" class="logo">Foody</a>
     <div class="header-right">
         <div *ngIf="currentUser; else notShow">
-            <a class="active">Hello, {{currentUser?.firstName}} {{currentUser?.lastName}}</a>
+            <a class="active">Hello, {{currentUser?.first_name}} {{currentUser?.last_name}}</a>
             <a (click)="logout()" routerLink="/">Logout</a>
         </div>
         

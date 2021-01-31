@@ -18,7 +18,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component'
-import { KEYS } from './keys/keys';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component'
 import { RatingComponent } from './rating/rating.component';

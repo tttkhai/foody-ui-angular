@@ -1,10 +1,9 @@
 import { AuthenticationService } from './authentication.service';
-// import { KEYS } from './../Constants';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders } from '@angular/common/http'
+import {HttpClient } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
-import { Preferences, Restaurant } from '../models/Restaurant';
+import { Restaurant } from '../models/Restaurant';
 
 
 @Injectable({
@@ -16,7 +15,6 @@ export class FoodyService {
 
   token: any
   user: any
-  
   
   constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
@@ -37,7 +35,7 @@ export class FoodyService {
   }
 
   getRestaurantListByPreferences(preference: any): Observable<Restaurant[]>{
-    return this.http.post<Restaurant[]>(this.url+'restaurantList', preference);
+    return this.http.post<Restaurant[]>(this.url+'search/restaurantList', preference);
   }
 
   addReview(reviews: any){
@@ -74,7 +72,6 @@ export class FoodyService {
     }
     return sum/element.length;
   }
-
 
   searchRestaurantByLocation(){
     this.http.get(this.url+'results').pipe(
